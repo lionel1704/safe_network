@@ -7,9 +7,9 @@
 // permissions and limitations relating to use of the SAFE Network Software.
 
 use super::SectionAuthorityProviderUtils;
-use crate::{peer::PeerUtils, section::NodeStateUtils};
+use crate::routing::{peer::PeerUtils, section::NodeStateUtils};
 use itertools::Itertools;
-use sn_messaging::{
+use crate::messaging::{
     node::{MembershipState, NodeState, Peer, SectionPeers, SectionSigned},
     SectionAuthorityProvider,
 };

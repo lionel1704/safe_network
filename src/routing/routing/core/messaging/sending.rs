@@ -7,7 +7,7 @@
 // permissions and limitations relating to use of the SAFE Network Software.
 
 use super::super::Core;
-use crate::{
+use crate::routing::{
     dkg::DkgKeyUtils,
     error::Result,
     messages::RoutingMsgUtils,
@@ -18,7 +18,7 @@ use crate::{
     section::{ElderCandidatesUtils, SectionAuthorityProviderUtils, SectionUtils},
 };
 use secured_linked_list::SecuredLinkedList;
-use sn_messaging::{
+use crate::messaging::{
     node::{
         DkgKey, ElderCandidates, JoinResponse, Network, NodeState, Peer, PlainMessage, Proposal,
         RelocateDetails, RelocatePromise, RoutingMsg, Section, SectionSigned, Variant,

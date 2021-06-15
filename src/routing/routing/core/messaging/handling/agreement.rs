@@ -8,7 +8,7 @@
 
 use std::cmp;
 
-use crate::{
+use crate::routing::{
     dkg::SectionSignedUtils,
     error::Result,
     messages::RoutingMsgUtils,
@@ -21,7 +21,7 @@ use crate::{
     Error, Event, MIN_AGE,
 };
 use secured_linked_list::SecuredLinkedList;
-use sn_messaging::{
+use crate::messaging::{
     node::{
         MembershipState, NodeState, PlainMessage, Proposal, RoutingMsg, SectionSigned, Signed,
         Variant,

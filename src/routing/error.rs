@@ -6,7 +6,7 @@
 // KIND, either express or implied. Please review the Licences for the specific language governing
 // permissions and limitations relating to use of the SAFE Network Software.
 
-use crate::{
+use crate::routing::{
     dkg::ProposalError,
     messages::{CreateError, ExtendSignedChainError},
 };
@@ -63,7 +63,7 @@ pub enum Error {
     #[error("Invalid section chain: {0}")]
     InvalidSectionChain(#[from] SecuredLinkedListError),
     #[error("Messaging protocol error: {0}")]
-    Messaging(#[from] sn_messaging::Error),
+    Messaging(#[from] crate::messaging::Error),
     #[error("proposal error: {0}")]
     ProposalError(#[from] ProposalError),
     #[error("create error: {0}")]

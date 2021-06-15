@@ -7,7 +7,7 @@
 // permissions and limitations relating to use of the SAFE Network Software.
 
 use crate::messaging::node::{DkgFailureSigned, DkgFailureSignedSet, DkgKey, ElderCandidates};
-use crate::routing::{
+use crate::routing::routing::{
     crypto::{self, Digest256, Keypair, Verifier},
     peer::PeerUtils,
     section::ElderCandidatesUtils,

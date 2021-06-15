@@ -7,7 +7,7 @@
 // permissions and limitations relating to use of the SAFE Network Software.
 
 use super::{Comm, Command, Core, Dispatcher};
-use crate::{
+use crate::routing::{
     dkg::{
         test_utils::{prove, section_signed},
         ProposalUtils,
@@ -33,7 +33,7 @@ use bytes::Bytes;
 use resource_proof::ResourceProof;
 use secured_linked_list::SecuredLinkedList;
 use sn_data_types::{Keypair, PublicKey};
-use sn_messaging::{
+use crate::messaging::{
     location::{Aggregation, Itinerary},
     node::{
         JoinRequest, JoinResponse, MembershipState, Network, NodeState, Peer, PlainMessage,

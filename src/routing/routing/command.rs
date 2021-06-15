@@ -6,10 +6,10 @@
 // KIND, either express or implied. Please review the Licences for the specific language governing
 // permissions and limitations relating to use of the SAFE Network Software.
 
-use crate::{routing::Peer, section::SectionKeyShare, XorName};
+use crate::routing::{routing::Peer, section::SectionKeyShare, XorName};
 use bytes::Bytes;
 use hex_fmt::HexFmt;
-use sn_messaging::{
+use crate::messaging::{
     node::{DkgFailureSignedSet, Proposal, RoutingMsg, Signed, SignedRelocateDetails},
     section_info::SectionInfoMsg,
     DestInfo, Itinerary, MessageType, SectionAuthorityProvider,

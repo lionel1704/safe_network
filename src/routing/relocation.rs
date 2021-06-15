@@ -8,14 +8,14 @@
 
 //! Relocation related types and utilities.
 
-use crate::{
+use crate::routing::{
     ed25519::{self, Keypair, Verifier},
     error::Error,
     network::NetworkUtils,
     peer::PeerUtils,
     section::{SectionPeersUtils, SectionUtils},
 };
-use sn_messaging::{
+use crate::messaging::{
     node::{
         Network, NodeState, Peer, RelocateDetails, RelocatePayload, RelocatePromise, RoutingMsg,
         Section, SignedRelocateDetails, Variant,
@@ -267,7 +267,7 @@ fn trailing_zeros(bytes: &[u8]) -> u32 {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::{
+    use crate::routing::{
         dkg::test_utils::section_signed,
         peer::test_utils::arbitrary_unique_peers,
         routing::tests::SecretKeySet,
@@ -280,7 +280,7 @@ mod tests {
     use proptest::prelude::*;
     use rand::{rngs::SmallRng, Rng, SeedableRng};
     use secured_linked_list::SecuredLinkedList;
-    use sn_messaging::SectionAuthorityProvider;
+    use crate::messaging::SectionAuthorityProvider;
     use xor_name::Prefix;
 
     #[test]

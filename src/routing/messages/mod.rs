@@ -10,7 +10,7 @@ mod plain_message;
 mod src_authority;
 
 pub use self::{plain_message::PlainMessageUtils, src_authority::SrcAuthorityUtils};
-use crate::{
+use crate::routing::{
     dkg::SectionSignedUtils,
     ed25519::{self, Verifier},
     error::{Error, Result},
@@ -19,8 +19,8 @@ use crate::{
 };
 use secured_linked_list::{error::Error as SecuredLinkedListError, SecuredLinkedList};
 use serde::Serialize;
-use sn_messaging::node::{Signed, SignedShare};
-use sn_messaging::{
+use crate::messaging::node::{Signed, SignedShare};
+use crate::messaging::{
     node::{JoinResponse, PlainMessage, RoutingMsg, SrcAuthority, Variant},
     Aggregation, DstLocation, MessageId,
 };

@@ -6,7 +6,7 @@
 // KIND, either express or implied. Please review the Licences for the specific language governing
 // permissions and limitations relating to use of the SAFE Network Software.
 
-use crate::{
+use crate::routing::{
     dkg::{
         commands::DkgCommand,
         dkg_msgs_utils::{DkgFailureSignedSetUtils, DkgFailureSignedUtils},
@@ -17,7 +17,7 @@ use crate::{
 };
 use bls_dkg::key_gen::{message::Message as DkgMessage, KeyGen};
 use itertools::Itertools;
-use sn_messaging::{
+use crate::messaging::{
     node::{DkgFailureSigned, DkgFailureSignedSet, DkgKey, ElderCandidates},
     SectionAuthorityProvider,
 };
@@ -329,7 +329,7 @@ impl Backlog {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::{
+    use crate::routing::{
         dkg::voter::DkgVoter, dkg::DkgKeyUtils, ed25519, node::test_utils::arbitrary_unique_nodes,
         node::Node, section::section_authority_provider::ElderCandidatesUtils,
         section::test_utils::gen_addr, ELDER_SIZE, MIN_ADULT_AGE,

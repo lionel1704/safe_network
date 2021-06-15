@@ -7,9 +7,9 @@
 // permissions and limitations relating to use of the SAFE Network Software.
 
 use super::{SectionSignedUtils, Signed};
-use crate::{Error, Result};
+use crate::routing::{Error, Result};
 use serde::Serialize;
-use sn_messaging::node::SectionSigned;
+use crate::messaging::node::SectionSigned;
 
 // Create signed for the given payload using the given secret key.
 pub fn prove<T: Serialize>(secret_key: &bls::SecretKey, payload: &T) -> Result<Signed> {

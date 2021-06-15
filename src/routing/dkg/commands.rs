@@ -6,12 +6,12 @@
 // KIND, either express or implied. Please review the Licences for the specific language governing
 // permissions and limitations relating to use of the SAFE Network Software.
 
-use crate::{
+use crate::routing::{
     error::Result, messages::RoutingMsgUtils, node::Node, routing::command::Command,
     section::SectionKeyShare,
 };
 use bls_dkg::key_gen::message::Message as DkgMessage;
-use sn_messaging::{
+use crate::messaging::{
     node::{DkgFailureSigned, DkgFailureSignedSet, DkgKey, RoutingMsg, Variant},
     DestInfo, DstLocation, SectionAuthorityProvider,
 };

@@ -7,7 +7,7 @@
 // permissions and limitations relating to use of the SAFE Network Software.
 
 use super::{delivery_group, Core};
-use crate::{
+use crate::routing::{
     error::Result,
     messages::RoutingMsgUtils,
     network::NetworkUtils,
@@ -19,7 +19,7 @@ use crate::{
 };
 use bytes::Bytes;
 use secured_linked_list::SecuredLinkedList;
-use sn_messaging::{
+use crate::messaging::{
     node::{Network, NodeState, Peer, Proposal, RoutingMsg, Section, Variant},
     section_info::Error as TargetSectionError,
     DestInfo, EndUser, Itinerary, SectionAuthorityProvider, SrcLocation,

@@ -10,14 +10,14 @@ mod handling;
 mod sending;
 
 use super::Core;
-use crate::{
+use crate::routing::{
     dkg::{ProposalUtils, SignedShare},
     error::Result,
     messages::RoutingMsgUtils,
     routing::command::Command,
     section::{SectionAuthorityProviderUtils, SectionKeyShare, SectionUtils},
 };
-use sn_messaging::{
+use crate::messaging::{
     node::{Peer, Proposal, RoutingMsg, Variant},
     DstLocation,
 };

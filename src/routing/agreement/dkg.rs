@@ -11,7 +11,7 @@ use crate::messaging::{
     node::{DkgFailureSigned, DkgFailureSignedSet, DkgKey, ElderCandidates, RoutingMsg, Variant},
     DestInfo, DstLocation, SectionAuthorityProvider,
 };
-use crate::routing::{
+use crate::routing::routing::{
     crypto::{self, Keypair},
     error::Result,
     messages::RoutingMsgUtils,
@@ -587,7 +587,7 @@ impl DkgCommands for Option<DkgCommand> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::routing::{
+    use crate::routing::routing::{
         agreement::DkgKeyUtils, crypto, node::test_utils::arbitrary_unique_nodes,
         section::test_utils::gen_addr, ELDER_SIZE, MIN_ADULT_AGE,
     };

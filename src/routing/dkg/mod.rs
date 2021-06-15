@@ -22,7 +22,7 @@ pub(crate) use self::{
 };
 pub use section_signed::SectionSignedUtils;
 use serde::Serialize;
-pub(crate) use sn_messaging::node::{SignatureAggregator, Signed, SignedShare};
+pub(crate) use crate::messaging::node::{SignatureAggregator, Signed, SignedShare};
 
 // Verify the integrity of `message` against `signed`.
 pub(crate) fn verify_signed<T: Serialize>(signed: &Signed, message: &T) -> bool {

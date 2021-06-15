@@ -7,14 +7,14 @@
 // permissions and limitations relating to use of the SAFE Network Software.
 
 use super::Core;
-use crate::{
+use crate::routing::{
     messages::{RoutingMsgUtils, SrcAuthorityUtils},
     peer::PeerUtils,
     routing::command::Command,
     section::{SectionAuthorityProviderUtils, SectionUtils},
     Error, Result,
 };
-use sn_messaging::{
+use crate::messaging::{
     node::{Peer, RoutingMsg, Variant},
     DestInfo, DstLocation,
 };

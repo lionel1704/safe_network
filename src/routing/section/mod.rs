@@ -23,7 +23,7 @@ pub use self::{
     section_peers::SectionPeersUtils,
 };
 
-use crate::{
+use crate::routing::{
     dkg::SectionSignedUtils,
     error::{Error, Result},
     peer::PeerUtils,
@@ -31,7 +31,7 @@ use crate::{
 };
 use secured_linked_list::{error::Error as SecuredLinkedListError, SecuredLinkedList};
 use serde::Serialize;
-use sn_messaging::{
+use crate::messaging::{
     node::{ElderCandidates, NodeState, Peer, Section, SectionPeers, SectionSigned, Signed},
     SectionAuthorityProvider,
 };

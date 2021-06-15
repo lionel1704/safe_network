@@ -9,7 +9,7 @@
 use super::{verify_signed, Signed};
 use secured_linked_list::SecuredLinkedList;
 use serde::Serialize;
-use sn_messaging::node::SectionSigned;
+use crate::messaging::node::SectionSigned;
 
 pub trait SectionSignedUtils<T: Serialize> {
     fn new(value: T, signed: Signed) -> Self;

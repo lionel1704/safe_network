@@ -13,7 +13,7 @@ mod relocation;
 mod resource_proof;
 
 use super::super::Core;
-use crate::{
+use crate::routing::{
     dkg::{commands::DkgCommands, ProposalError, SignedShare},
     error::{Error, Result},
     event::Event,
@@ -28,8 +28,8 @@ use crate::{
     },
 };
 use bytes::Bytes;
-use sn_messaging::node::Error as AggregatorError;
-use sn_messaging::{
+use crate::messaging::node::Error as AggregatorError;
+use crate::messaging::{
     client::ClientMsg,
     node::{
         DkgFailureSignedSet, JoinRejectionReason, JoinRequest, JoinResponse, Network, Peer,
@@ -179,7 +179,7 @@ impl Core {
     ) -> Result<Vec<Command>> {
         match self.proposal_aggregator.add(proposal, signed_share) {
             Ok((proposal, signed)) => Ok(vec![Command::HandleAgreement { proposal, signed }]),
-            Err(ProposalError::Aggregation(sn_messaging::node::Error::NotEnoughShares)) => {
+            Err(ProposalError::Aggregation(crate::messaging::node::Error::NotEnoughShares)) => {
                 Ok(vec![])
             }
             Err(error) => {
