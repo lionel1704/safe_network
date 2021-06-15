@@ -7,7 +7,7 @@
 // permissions and limitations relating to use of the SAFE Network Software.
 
 use super::SignableView;
-use crate::messaging::node::PlainMessage;
+use sn_messaging::node::PlainMessage;
 
 /// Section-source message without signature and signed.
 pub trait PlainMessageUtils {

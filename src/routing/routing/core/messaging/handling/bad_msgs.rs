@@ -7,16 +7,16 @@
 // permissions and limitations relating to use of the SAFE Network Software.
 
 use super::Core;
-use crate::messaging::{
-    node::{Peer, RoutingMsg, Variant},
-    DestInfo, DstLocation,
-};
-use crate::routing::{
+use crate::{
     messages::{RoutingMsgUtils, SrcAuthorityUtils},
     peer::PeerUtils,
     routing::command::Command,
     section::{SectionAuthorityProviderUtils, SectionUtils},
     Error, Result,
+};
+use sn_messaging::{
+    node::{Peer, RoutingMsg, Variant},
+    DestInfo, DstLocation,
 };
 use std::net::SocketAddr;
 

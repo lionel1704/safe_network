@@ -62,6 +62,9 @@
     deprecated
 )]
 
+#[macro_use]
+extern crate tracing;
+
 // ############################################################################
 // Public API
 // ############################################################################
@@ -84,9 +87,9 @@ pub use xor_name::{Prefix, XorName, XOR_NAME_LEN}; // TODO remove pub on API upd
 // Private
 // ############################################################################
 
-mod agreement;
 mod cache;
-mod crypto;
+mod dkg;
+mod ed25519;
 mod error;
 mod event;
 mod message_filter;
