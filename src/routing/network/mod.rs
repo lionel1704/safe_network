@@ -74,9 +74,8 @@ impl NetworkUtils for Network {
     /// belongs in that section or not.
     fn closest(&self, name: &XorName) -> Option<&SectionAuth<SectionAuthorityProvider>> {
         self.sections
-            .get_matching(name)
-            // .iter()
-            // .min_by(|(lhs_prefix, _), (rhs_prefix, _)| lhs_prefix.cmp_distance(rhs_prefix, name))
+            .iter()
+            .min_by(|(lhs_prefix, _), (rhs_prefix, _)| lhs_prefix.cmp_distance(rhs_prefix, name))
             .map(|(_, sap)| sap)
     }
 
