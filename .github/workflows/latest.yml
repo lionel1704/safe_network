@@ -19,6 +19,7 @@ jobs:
       - uses: actions-rs/toolchain@v1
         id: toolchain
         with:
+          target: x86_64-unknown-linux-musl
           profile: minimal
           toolchain: stable
           override: true
