@@ -1,0 +1,21 @@
+name: Kill testnet running on Digital Ocean
+
+on: workflow_dispatch
+
+env:
+  CARGO_INCREMENTAL: '0'
+  RUST_BACKTRACE: 1
+  RUSTFLAGS: "-D warnings"
+
+jobs:
+  launch-testnet:
+    name: Destroy Digital Ocean testnet
+    runs-on: ubuntu-latest
+    steps:
+      - name: Launch testnet
+        uses: lionel1704/safe-testnet-action@master
+        with:
+          do-token: ${{ secrets.DO_TOKEN }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-access-key-secret: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          action: 'destroy'
