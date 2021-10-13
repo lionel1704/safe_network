@@ -19,6 +19,7 @@ on:
         description: 'Kill network after client tests? (y/n)'
         required: false
         default: 'n'
+  pull_request:
 
 env:
   CARGO_INCREMENTAL: '0'
