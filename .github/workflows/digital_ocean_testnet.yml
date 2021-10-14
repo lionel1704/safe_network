@@ -19,7 +19,7 @@ on:
         description: 'Kill network after client tests? (y/n)'
         required: false
         default: 'n'
-  pull_request:
+  pull_request_target:
 
 env:
   CARGO_INCREMENTAL: '0'
@@ -51,7 +51,8 @@ jobs:
     if: always() && (github.event.inputs.run-client-tests == 'y' || github.event_name == 'pull_request')
     steps:
       - uses: actions/checkout@v2
-
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Set TESTNET_ID env
         shell: bash
