@@ -6,7 +6,8 @@
 // KIND, either express or implied. Please review the Licences for the specific language governing
 // permissions and limitations relating to use of the SAFE Network Software.
 
-use crate::messaging::system::{DkgFailureSig, DkgFailureSigSet, DkgSessionId};
+use crate::messaging::system::{DkgFailureSig, DkgFailureSigSet, DkgSessionId, SystemMsg};
+use crate::messaging::DstLocation;
 use crate::routing::{
     dkg::session::{Backlog, Session},
     ed25519,
@@ -173,6 +174,7 @@ impl DkgVoter {
     // Handle a received DkgMessage.
     pub(crate) async fn process_message(
         &self,
+        sender: XorName,
         node: &Node,
         session_id: &DkgSessionId,
         message: DkgMessage,
@@ -192,7 +194,17 @@ impl DkgVoter {
             commands.extend(session.process_message(node, session_id, message, section_pk)?)
         } else {
             trace!("Pushing to backlog {:?} - {:?}", session_id, message);
-            self.backlog.write().await.push(*session_id, message);
+            // self.backlog.write().await.push(*session_id, message);
+            commands.push(Command::PrepareNodeMsgToSend {
+                msg: SystemMsg::DkgNotReady {
+                    session_id: *session_id,
+                    message,
+                },
+                dst: DstLocation::Node {
+                    name: sender,
+                    section_pk,
+                },
+            });
         }
         Ok(commands)
     }
@@ -206,5 +218,16 @@ impl DkgVoter {
         self.sessions
             .get_mut(session_id)?
             .process_failure(session_id, failed_participants, signed)
+    }
+
+    pub(crate) async fn get_cached_messages(
+        &self,
+        session_id: &DkgSessionId,
+    ) -> Result<Vec<DkgMessage>> {
+        if let Some(session) = self.sessions.get_mut(session_id) {
+            session.get_cached_messages().await
+        } else {
+            Ok(Vec::new())
+        }
     }
 }

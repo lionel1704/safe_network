@@ -10,6 +10,7 @@ use super::super::Core;
 use crate::messaging::system::{
     DkgFailureSig, DkgFailureSigSet, DkgSessionId, Proposal, SystemMsg,
 };
+use crate::messaging::DstLocation;
 use crate::routing::{
     dkg::DkgFailureSigSetUtils,
     error::{Error, Result},
@@ -18,6 +19,7 @@ use crate::routing::{
     routing_api::command::Command,
     Peer,
 };
+use bls::PublicKey as BlsPublicKey;
 use bls_dkg::key_gen::message::Message as DkgMessage;
 use std::{
     collections::{BTreeMap, BTreeSet},
@@ -62,12 +64,34 @@ impl Core {
 
         self.dkg_voter
             .process_message(
+                sender,
                 &self.node.read().await.clone(),
                 &session_id,
                 message,
                 self.network_knowledge().section_key().await,
             )
             .await
+    }
+
+    pub(crate) async fn handle_dkg_not_ready(
+        &self,
+        sender: Peer,
+        message: DkgMessage,
+        session_id: DkgSessionId,
+        section_pk: BlsPublicKey,
+    ) -> Result<Vec<Command>> {
+        let message_history = self.dkg_voter.get_cached_messages(&session_id).await?;
+        Ok(vec![Command::PrepareNodeMsgToSend {
+            msg: SystemMsg::DkgRetry {
+                message_history,
+                message,
+                session_id,
+            },
+            dst: DstLocation::Node {
+                name: sender.name(),
+                section_pk,
+            },
+        }])
     }
 
     pub(crate) fn handle_dkg_failure_observation(

@@ -314,6 +314,11 @@ impl Session {
         self.check_failure_agreement()
     }
 
+    pub(crate) async fn get_cached_messages(&self) -> Result<Vec<DkgMessage>> {
+        // self.key_gen.get_cached_messages()
+        unimplemented!();
+    }
+
     fn check_failure_agreement(&mut self) -> Option<Command> {
         if self.failures.has_agreement(&self.elder_candidates) {
             self.complete = true;
@@ -340,6 +345,7 @@ impl Backlog {
         Self(VecDeque::with_capacity(BACKLOG_CAPACITY))
     }
 
+    #[allow(unused)]
     pub(crate) fn push(&mut self, session_id: DkgSessionId, message: DkgMessage) {
         if self.0.len() == self.0.capacity() {
             let _prev = self.0.pop_front();
@@ -468,6 +474,7 @@ mod tests {
             let actor = actors.get_mut(&addr).context("Unknown message recipient")?;
 
             let commands = futures::executor::block_on(actor.voter.process_message(
+                actor.node.name(),
                 &actor.node,
                 &session_id,
                 message,
