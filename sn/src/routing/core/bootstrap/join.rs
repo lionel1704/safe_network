@@ -92,8 +92,8 @@ impl<'a> Join<'a> {
             signature_aggregator: SignatureAggregator::new(),
             node_state_serialized: None,
             backoff: ExponentialBackoff {
-                initial_interval: Duration::from_millis(50),
-                max_interval: Duration::from_millis(750),
+                initial_interval: Duration::from_millis(500),
+                max_interval: Duration::from_millis(1000),
                 max_elapsed_time: Some(Duration::from_secs(60)),
                 ..Default::default()
             },

@@ -91,9 +91,9 @@ impl Dispatcher {
     /// It should only be used after checking that no permits are held by a root cmd eg
     async fn wait_for_priority_commands_to_finish(&self, semaphore: Arc<Semaphore>, count: usize) {
         // there's probably a neater way to do this
-        debug!("available, permits {:?}", semaphore.available_permits());
         while semaphore.available_permits() != count {
-            time::sleep(Duration::from_millis(50)).await
+            time::sleep(Duration::from_millis(1000)).await;
+            debug!("available, permits {:?}", semaphore.available_permits());
         }
     }
 
