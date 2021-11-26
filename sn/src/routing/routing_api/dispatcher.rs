@@ -32,7 +32,7 @@ use tokio::{
 };
 use tracing::Instrument;
 
-const PROBE_INTERVAL: Duration = Duration::from_secs(30);
+const PROBE_INTERVAL: Duration = Duration::from_secs(3);
 
 // this doesn't realistically limit concurrency
 // the prioritisation will do that, preventing lower prio messages being kicked off when
