@@ -128,6 +128,14 @@ impl Core {
         sender: XorName,
     ) -> Result<Vec<Command>> {
         let section_key = self.network_knowledge().section_key().await;
+        let current_generation = self.network_knowledge.chain_len().await;
+        if session_id.generation < current_generation {
+            trace!(
+                "Ignoring DkgRetry for expired DKG session: {:?}",
+                &session_id
+            );
+            return Ok(vec![]);
+        }
         let mut commands = self
             .dkg_voter
             .handle_dkg_history(
