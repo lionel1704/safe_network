@@ -55,6 +55,13 @@ impl Core {
             }),
         );
 
+        self.dkg_sessions
+            .write()
+            .await
+            .retain(|existing_session_id, _| {
+                existing_session_id.generation >= session_id.generation
+            });
+
         trace!("Received DkgStart for {:?}", elder_candidates);
         let commands = self
             .dkg_voter
