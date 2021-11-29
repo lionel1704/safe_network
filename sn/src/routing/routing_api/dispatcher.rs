@@ -315,12 +315,15 @@ impl Dispatcher {
         command: Command,
         cmd_id: Option<String>,
     ) -> Result<()> {
-        debug!("staeting enqueue command {:?}", cmd_id);
+        debug!("starting enqueue command {:?}", cmd_id);
         let _ = tokio::spawn(async {
             let cmd_id = cmd_id.unwrap_or_else(|| rand::random::<u32>().to_string());
-            debug!("spawnes enqueue command {:?}", cmd_id);
-            self.acquire_permit_or_wait(command.priority()?, cmd_id.clone())
-                .await;
+            debug!("spawned enqueue command {:?}", cmd_id);
+
+            if cfg!(feature = "unstable-command-prioritisation") {
+                self.acquire_permit_or_wait(command.priority()?, cmd_id.clone())
+                    .await;
+            }
             self.handle_command_and_any_offshoots(command, cmd_id).await
         });
         Ok(())
