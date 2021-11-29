@@ -143,6 +143,19 @@ impl Core {
                 )
                 .await?,
         );
+
+        // do not loop. Avoid resending DkgNotReady
+        let commands = commands
+            .into_iter()
+            .filter(|cmd| match cmd {
+                Command::PrepareNodeMsgToSend {
+                    msg: SystemMsg::DkgNotReady { .. },
+                    ..
+                } => false,
+                _ => true,
+            })
+            .collect();
+
         Ok(commands)
     }
 

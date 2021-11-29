@@ -121,7 +121,11 @@ impl Command {
         // we use the cmd_id to check for a "root cmd" and go off that commands priority
         // so this prio may not have an impact if the root was higher/lower
         let prio = match self {
-            Self::HandleMessage { wire_msg, .. } => wire_msg.into_message()?.priority(),
+            Self::HandleMessage { wire_msg, .. } => {
+                let msg_type = wire_msg.into_message()?;
+                trace!("MsgType being prioritized: {:?}", msg_type);
+                msg_type.priority()
+            }
             Self::HandleDkgOutcome { .. } | Self::HandleDkgFailure(_) => DKG_MSG_PRIORITY,
             Self::HandleElderAgreement { .. } => DKG_MSG_PRIORITY, // its end of DKG
             Self::HandleAgreement { .. } | Self::HandleSystemMessage { .. } => {

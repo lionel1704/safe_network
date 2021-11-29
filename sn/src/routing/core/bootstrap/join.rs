@@ -272,7 +272,11 @@ impl<'a> Join<'a> {
                             continue;
                         }
                         Err(AggregatorError::NotEnoughShares) => continue,
-                        _ => return Err(Error::InvalidSignatureShare),
+                        error => {
+                            error!("Error aggregating signature during join process{:?}", error);
+                            // continue as we can still attempt to do more.
+                            continue;
+                        }
                     }
                 }
                 JoinResponse::Retry {
