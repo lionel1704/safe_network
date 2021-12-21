@@ -49,7 +49,7 @@ jobs:
         with:
           profile: minimal
           toolchain: stable
-          override: true
+          default: true
 
       - uses: Swatinem/rust-cache@v1
         with:
@@ -162,7 +162,7 @@ jobs:
         with:
           profile: minimal
           toolchain: stable
-          override: true
+          default: true
 
       - uses: Swatinem/rust-cache@v1
         with:
@@ -233,7 +233,7 @@ jobs:
         with:
           profile: minimal
           toolchain: stable
-          override: true
+          default: true
 
       - uses: Swatinem/rust-cache@v1
         with:
@@ -393,7 +393,7 @@ jobs:
         with:
           profile: minimal
           toolchain: stable
-          override: true
+          deafult: true
 
       - uses: Swatinem/rust-cache@v1
         with:
