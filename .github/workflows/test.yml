@@ -5,5 +5,7 @@ jobs:
   test:
     runs-on: self-hosted-windows
     steps:
-      - name: Step One
-        run: choco install -y ripgrep
+      - name: Reproduce failing step
+        uses: actions-rs/toolchain@v1
+        with:
+            toolchain: stable
