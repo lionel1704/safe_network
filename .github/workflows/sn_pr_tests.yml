@@ -51,6 +51,9 @@ jobs:
           toolchain: stable
           default: true
 
+      - name: Refresh env variables
+        run: refreshenv
+
       - uses: Swatinem/rust-cache@v1
         with:
           cache-on-failure: true
@@ -163,6 +166,9 @@ jobs:
           profile: minimal
           toolchain: stable
           default: true
+
+      - name: Refresh env variables
+        run: refreshenv
 
       - uses: Swatinem/rust-cache@v1
         with:
@@ -394,6 +400,9 @@ jobs:
           profile: minimal
           toolchain: stable
           deafult: true
+
+      - name: Refresh env variables
+        run: refreshenv
 
       - uses: Swatinem/rust-cache@v1
         with:
