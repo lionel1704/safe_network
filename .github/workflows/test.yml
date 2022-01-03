@@ -9,6 +9,9 @@ jobs:
       matrix:
         os: [self-hosted-windows, windows-latest]
     steps:
+      - name: Remove pre-installed rustup
+        run: rustup self uninstall
+        continue-on-error: true
       - name: Reproduce failing step
         uses: actions-rs/toolchain@v1
         with:
