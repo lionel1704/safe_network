@@ -7,12 +7,17 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [self-hosted-windows, windows-latest, ubuntu-latest]
+        os: [windows-latest]
     steps:
       - name: Remove pre-installed rustup
         run: rustup self uninstall -y
         continue-on-error: true
       - name: Reproduce failing step
         uses: actions-rs/toolchain@v1
+        continue-on-error: true
+        with:
+            toolchain: stable
+      - name: Fork that does not fail
+        uses: lionel1704/toolchain@master
         with:
             toolchain: stable
