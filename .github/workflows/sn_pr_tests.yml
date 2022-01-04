@@ -229,7 +229,7 @@ jobs:
       # Install Rust
       - name: Install Rust
         id: toolchain
-        uses: actions-rs/toolchain@v88dc2356392166efad76775c878094f4e83ff746
+        uses: lionel1704/toolchain@master
         with:
           profile: minimal
           toolchain: stable
