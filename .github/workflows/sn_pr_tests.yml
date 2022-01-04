@@ -45,14 +45,11 @@ jobs:
       # Install Rust
       - name: Install Rust
         id: toolchain
-        uses: lionel1704/toolchain@master
+        uses: actions-rs/toolchain@master
         with:
           profile: minimal
           toolchain: stable
           default: true
-
-      - name: Refresh env variables
-        run: refreshenv
 
       - uses: Swatinem/rust-cache@v1
         with:
@@ -161,14 +158,11 @@ jobs:
       # Install Rust
       - name: Install Rust
         id: toolchain
-        uses: lionel1704/toolchain@master
+        uses: actions-rs/toolchain@master
         with:
           profile: minimal
           toolchain: stable
           default: true
-
-      - name: Refresh env variables
-        run: refreshenv
 
       - uses: Swatinem/rust-cache@v1
         with:
@@ -395,14 +389,11 @@ jobs:
       # Install Rust
       - name: Install Rust
         id: toolchain
-        uses: lionel1704/toolchain@master
+        uses: actions-rs/toolchain@master
         with:
           profile: minimal
           toolchain: stable
           deafult: true
-
-      - name: Refresh env variables
-        run: refreshenv
 
       - uses: Swatinem/rust-cache@v1
         with:
