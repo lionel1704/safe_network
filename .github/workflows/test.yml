@@ -1,0 +1,14 @@
+name: Testing
+on: [pull_request]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [self-hosted-windows]
+    steps:
+      - name: Install rust
+        uses: actions-rs/toolchain@v1
+        continue-on-error: true
