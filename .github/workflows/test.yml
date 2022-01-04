@@ -7,8 +7,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [self-hosted-windows]
+        os: [windows-latest]
     steps:
-      - name: Install rust
-        uses: actions-rs/toolchain@v1
-        continue-on-error: true
+      - run: scoop install gcc
