@@ -35,7 +35,7 @@ name = "routing_stress"
 required-features = ["test-utils"]
 
 [features]
-default = []
+default = ['tokio-console']
 always-joinable = []
 unstable-command-prioritisation = []
 chaos = []

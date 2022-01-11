@@ -9,3 +9,6 @@ rustflags = [
 rustflags = [
     "-C", "link-arg=-Wl,--stack,0x800000"
 ]
+
+[build]
+rustflags = ["--cfg", "tokio_unstable"]
